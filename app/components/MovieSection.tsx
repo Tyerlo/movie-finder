@@ -31,7 +31,7 @@ function MovieSection({ sectionTitle, movies }: MovieSectionProps) {
 
 	return (
 		<div className="py-6">
-			<h2 className="text-xl font-semibold mb-4">{sectionTitle}</h2>
+			<h2 className="text-base font-semibold mb-4">{sectionTitle}</h2>
 			<div className="relative">
 				<div
 					ref={carouselRef}

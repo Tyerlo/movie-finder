@@ -53,7 +53,7 @@ function MovieCard({ movie }: { movie: Media }) {
 	const rating = movie.vote_average.toFixed(1);
 
 	return (
-		<div className="relative flex-none w-[200px]">
+		<div className="w-72 aspect-square">
 			<div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow h-[400px]">
 				<figure className="h-[300px] relative">
 					<Image src={posterUrl} alt={title} fill className="object-cover" />
@@ -61,7 +61,7 @@ function MovieCard({ movie }: { movie: Media }) {
 				<div className="absolute top-2 right-2">
 					<div className="flex items-center gap-1 bg-white px-2 py-1 rounded-lg">
 						<svg
-							className="w-4 h-4 text-yellow-400"
+							className="w-4 h-4 text-[#FF8F3B]"
 							fill="currentColor"
 							viewBox="0 0 20 20"
 							xmlns="http://www.w3.org/2000/svg"
@@ -72,8 +72,10 @@ function MovieCard({ movie }: { movie: Media }) {
 					</div>
 				</div>
 				<div className="card-body p-4 h-[100px]">
-					<h3 className="card-title text-sm font-bold line-clamp-2">{title}</h3>
-					<p className="text-xs text-base-content/70 line-clamp-1">
+					<h3 className="card-title text-base font-bold line-clamp-2">
+						{title}
+					</h3>
+					<p className="text-sm text-base-content/70 line-clamp-1">
 						{year} • {genreNames.join(", ")}
 					</p>
 				</div>

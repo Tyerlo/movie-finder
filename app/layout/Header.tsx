@@ -28,7 +28,7 @@ function Header() {
 						Actors
 					</Link>
 
-					<a className="btn btn-secondary">Sign in</a>
+					<a className="btn bg-[#0668FB] text-white">Sign in</a>
 				</div>
 
 				{/* Mobile menu dropdown */}
@@ -72,7 +72,7 @@ function Header() {
 						</li>
 
 						<li className="py-2">
-							<a className="btn btn-secondary">Sign in</a>
+							<a className="btn bg-[#0668FB] text-white">Sign in</a>
 						</li>
 					</ul>
 				</div>
