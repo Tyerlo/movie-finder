@@ -24,7 +24,6 @@ export default function Movies() {
 			)
 				.then((response) => response.json())
 				.then(({ results }) => {
-					console.log(results);
 					const filteredMovies = results
 						.map(
 							({

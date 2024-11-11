@@ -99,8 +99,6 @@ export default function Home() {
 	const dramaMovies = movies.filter((movie) =>
 		movie.genre_ids.some((id) => getGenreNameById(id) === "Drama")
 	);
-	// Fix so Drama and comedy only shows on first page,
-	//Create a route for Movies, Tv-shows and ACtors, make same implementation but only change the api.
 
 	return (
 		<div className="min-h-screen">

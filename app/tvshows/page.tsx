@@ -25,7 +25,6 @@ export default function TvShows() {
 			)
 				.then((response) => response.json())
 				.then(({ results }) => {
-					console.log(results);
 					const filteredMovies = results
 						.map(
 							({
