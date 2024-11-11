@@ -10,12 +10,19 @@ interface Movie {
 	year: string;
 }
 
+interface TvShow extends Omit<Movie, "title" | "year"> {
+	first_air_date: string;
+	name: string;
+}
+
+type Media = Movie | TvShow;
+
 interface Genre {
 	id: number;
 	name: string;
 }
 
-function MovieCard({ movie }: { movie: Movie }) {
+function MovieCard({ movie }: { movie: Media }) {
 	const [genres, setGenres] = useState<Genre[]>([]);
 	const posterUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 
@@ -39,18 +46,17 @@ function MovieCard({ movie }: { movie: Movie }) {
 		.map((id) => genres.find((genre) => genre.id === id)?.name)
 		.filter((name) => name);
 
+	// Get the correct title and year based on whether it's a Movie or TvShow
+	const title = "title" in movie ? movie.title : movie.name;
+	const year = "year" in movie ? movie.year : movie.first_air_date?.slice(0, 4);
+
 	const rating = movie.vote_average.toFixed(1);
 
 	return (
 		<div className="relative flex-none w-[200px]">
 			<div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow h-[400px]">
 				<figure className="h-[300px] relative">
-					<Image
-						src={posterUrl}
-						alt={movie.title}
-						fill
-						className="object-cover"
-					/>
+					<Image src={posterUrl} alt={title} fill className="object-cover" />
 				</figure>
 				<div className="absolute top-2 right-2">
 					<div className="flex items-center gap-1 bg-white px-2 py-1 rounded-lg">
@@ -66,11 +72,9 @@ function MovieCard({ movie }: { movie: Movie }) {
 					</div>
 				</div>
 				<div className="card-body p-4 h-[100px]">
-					<h3 className="card-title text-sm font-bold line-clamp-2">
-						{movie.title}
-					</h3>
+					<h3 className="card-title text-sm font-bold line-clamp-2">{title}</h3>
 					<p className="text-xs text-base-content/70 line-clamp-1">
-						{movie.year} • {genreNames.join(", ")}
+						{year} • {genreNames.join(", ")}
 					</p>
 				</div>
 			</div>

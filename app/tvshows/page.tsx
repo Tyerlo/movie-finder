@@ -1,22 +1,23 @@
 "use client";
 import { useEffect, useState } from "react";
-import MovieSection from "../components/MovieSection";
+import TvSection from "../components/TvSection";
 
-interface Movies {
+interface TvShows {
 	id: number;
 	poster_path: string;
-	title: string;
-	year: string;
+	name: string;
+	first_air_date: string;
 	genre_ids: number[];
 	vote_average: number;
 }
-export default function Movies() {
+
+export default function TvShows() {
 	const [query, setQuery] = useState("");
-	const [movies, setMovies] = useState<Movies[]>([]);
+	const [tvshows, setTvShows] = useState<TvShows[]>([]);
 	useEffect(() => {
 		if (query.trim()) {
 			fetch(
-				`https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(
+				`https://api.themoviedb.org/3/search/tv?query=${encodeURIComponent(
 					query
 				)}&include_adult=false&language=en-US&page=1&api_key=${
 					process.env.TMDB_API_KEY
@@ -30,36 +31,36 @@ export default function Movies() {
 							({
 								id,
 								poster_path,
-								title,
-								release_date,
+								name,
+								first_air_date,
 								genre_ids,
 								vote_average
 							}: {
 								id: number;
 								poster_path: string;
-								title: string;
-								release_date: string;
+								name: string;
+								first_air_date: string;
 								genre_ids: number[];
 								vote_average: number;
 							}) => ({
 								id,
 								poster_path,
-								title,
-								year: release_date?.split("-")[0],
+								name,
+								year: first_air_date?.split("-")[0],
 								genre_ids,
 								vote_average
 							})
 						)
-						.filter(({ poster_path }: Movies) => !!poster_path);
+						.filter(({ poster_path }: TvShows) => !!poster_path);
 
-					setMovies(filteredMovies);
+					setTvShows(filteredMovies);
 				})
 				.catch((error) => {
 					console.error("Error fetching movies:", error);
-					setMovies([]);
+					setTvShows([]);
 				});
 		} else {
-			setMovies([]);
+			setTvShows([]);
 		}
 	}, [query]);
 
@@ -82,17 +83,17 @@ export default function Movies() {
 						</svg>
 						<input
 							type="text"
-							placeholder="Search movies"
+							placeholder="Search tv shows"
 							className="grow w-full"
 							value={query}
 							onChange={(e) => setQuery(e.target.value)}
 						/>
 					</label>
 				</div>
-				{movies.length > 0 ? (
-					<MovieSection sectionTitle="Movies" movies={movies} />
+				{tvshows.length > 0 ? (
+					<TvSection sectionTitle="Tv Shows" tvshows={tvshows} />
 				) : (
-					<p className="py-4 text-2xl">Type in a query to find movies</p>
+					<p className="py-4 text-2xl">Type in a query to find a tv show</p>
 				)}
 			</main>
 		</div>

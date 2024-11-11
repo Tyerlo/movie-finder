@@ -6,7 +6,9 @@ function Header() {
 		<div className="navbar">
 			{/* Title moves to start/left */}
 			<div className="navbar-start">
-				<a className="btn btn-ghost text-xl">The Movie Finder</a>
+				<Link href="/" className="btn btn-ghost text-xl">
+					The Movie Finder
+				</Link>
 			</div>
 
 			{/* Empty middle section */}
@@ -19,8 +21,12 @@ function Header() {
 					<Link href="/movies" className="btn btn-ghost">
 						Movies
 					</Link>
-					<a className="btn btn-ghost">Tv shows</a>
-					<a className="btn btn-ghost">Actors</a>
+					<Link href="/tvshows" className="btn btn-ghost">
+						Tv shows
+					</Link>
+					<Link href="/actors" className="btn btn-ghost">
+						Actors
+					</Link>
 
 					<a className="btn btn-secondary">Sign in</a>
 				</div>
@@ -55,10 +61,14 @@ function Header() {
 							</Link>
 						</li>
 						<li className="py-2">
-							<a className="btn btn-ghost">Tv shows</a>
+							<Link href="/tvshows" className="btn btn-ghost">
+								Tv shows
+							</Link>
 						</li>
 						<li className="py-2">
-							<a className="btn btn-ghost">Actors</a>
+							<Link href="/actors" className="btn btn-ghost">
+								Actors
+							</Link>
 						</li>
 
 						<li className="py-2">
